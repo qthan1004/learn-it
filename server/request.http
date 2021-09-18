@@ -1,0 +1,49 @@
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username":"",
+    "password":"1234"
+}
+
+###
+
+POST  http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username":"thanhdq",
+    "password":"1234"
+}
+
+###
+
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: thanhdq eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MTNkY2FiMTdhZTY5MjkyOTMzYmNkZGUiLCJpYXQiOjE2MzE4NzMzNzh9.WKY67Zo5tUeVEFDd4dDjcMbvR1C_hFX4beeX75yOU3o
+
+{
+    "title":"LEARNING ENGLISH v1 ",
+    "description":"Skill is traning....",
+    "url":"https://ielts-fighter.com/",
+    "status": "LEARNED"
+}
+
+###
+GET http://localhost:5000/api/posts
+Authorization: thanh1004 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MTNkZTJmOWE5MmU1ZmM3NWY5OTU5M2YiLCJpYXQiOjE2MzE0NDU5MTZ9.cMtuxXmaak9Dhi-DQQoxTT14tf3kElfLMZDHHRmcDdA
+
+###
+PUT http://localhost:5000/api/posts/613de47f06fe9ab61f99681d
+Content-Type: application/json
+Authorization:thanh1004 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MTNkZTJmOWE5MmU1ZmM3NWY5OTU5M2YiLCJpYXQiOjE2MzE0NDU5MTZ9.cMtuxXmaak9Dhi-DQQoxTT14tf3kElfLMZDHHRmcDdA
+
+{
+    "title":"COMPLETED EDIT",
+    "url":"https://www.facebook.com/",
+    "status": "TO LEARN"
+}
+
+###
+DELETE http://localhost:5000/api/posts/613de47f06fe9ab61f99681d
+Authorization: thanh1004 eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySUQiOiI2MTNkZTJmOWE5MmU1ZmM3NWY5OTU5M2YiLCJpYXQiOjE2MzE0NDU5MTZ9.cMtuxXmaak9Dhi-DQQoxTT14tf3kElfLMZDHHRmcDdA
