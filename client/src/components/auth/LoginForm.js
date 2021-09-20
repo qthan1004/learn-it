@@ -18,8 +18,8 @@ function LoginForm() {
     username: "",
     password: "",
   });
-  const [alert, setAlert] = useState(null);
 
+  const [alert, setAlert] = useState(null);
   const { username, password } = loginForm;
 
   const onChangeLogin = (event) => {
@@ -34,6 +34,7 @@ function LoginForm() {
 
     try {
       const loginData = await loginUser(loginForm);
+
       if (loginData.success) {
         history.push("/dashboard"); //login thành công -> đẩy đi tới dashboard
       } else {
@@ -43,8 +44,6 @@ function LoginForm() {
           setAlert(null);
         }, 5000);
       }
-
-      console.log(loginData);
     } catch (error) {
       console.log(error);
     }

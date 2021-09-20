@@ -1,6 +1,3 @@
-const argon2 = require("argon2");
-const jwt = require("jsonwebtoken");
-
 const Post = require("../models/Post.model");
 
 //@route GET api/posts
@@ -107,7 +104,7 @@ module.exports.editPost = async (req, res) => {
     //ALL PASS
     res.json({
       success: true,
-      message: "Update post completed!!",
+      message: "Update lession completed!!",
       post: updatedPost,
     });
   } catch (error) {

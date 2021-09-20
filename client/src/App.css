@@ -110,3 +110,8 @@ button.post-button.btn:active {
 .post-title {
 	margin-bottom: 0.5rem;
 }
+.close{
+	position: absolute;
+	top: 5px;
+	right: 10px
+}

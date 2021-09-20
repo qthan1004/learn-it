@@ -2,11 +2,17 @@ import { useContext, useEffect } from "react";
 import { PostContext } from "../contexts/PostContext";
 import { AuthContext } from "../contexts/AuthContext";
 import SinglePost from "../posts/SinglePost";
+import AddPostModal from "../posts/AddPostModal";
+import UpdatePostModal from "../posts/UpdatePostModal";
+import addIcon from "../../assets/plus-circle-fill.svg";
 import Spinner from "react-bootstrap/Spinner";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import OverlayTrigger from "react-bootstrap/OverlayTrigger";
+import Tooltip from "react-bootstrap/Tooltip";
+import Toast from "react-bootstrap/Toast";
 
 const Dashboard = () => {
   const {
@@ -16,8 +22,11 @@ const Dashboard = () => {
   } = useContext(AuthContext);
 
   const {
-    postState: { posts, postLoading },
+    postState: { post, posts, postLoading },
     getPost,
+    setShowAddPost,
+    showToast: { show, message, type },
+    setShowToast,
   } = useContext(PostContext);
 
   //GET ALL POSTS
@@ -40,7 +49,9 @@ const Dashboard = () => {
           <Card.Text>
             Click the button below to track your skill to learn
           </Card.Text>
-          <Button variant="primary">LearnIt</Button>
+          <Button variant="primary" onClick={setShowAddPost.bind(this, true)}>
+            LearnIt
+          </Button>
         </Card.Body>
       </Card>
     );
@@ -56,11 +67,45 @@ const Dashboard = () => {
             );
           })}
         </Row>
+
+        <OverlayTrigger
+          placement="left"
+          overlay={<Tooltip>Add new thing to learn !</Tooltip>}
+        >
+          <Button
+            className="btn-floating"
+            onClick={setShowAddPost.bind(this, true)}
+          >
+            <img src={addIcon} alt="addIcon" width="60" height="60" />
+          </Button>
+        </OverlayTrigger>
       </>
     );
   }
 
-  return <>{body}</>;
+  return (
+    <>
+      {post !== null && <UpdatePostModal />}
+      {body}
+      <AddPostModal />
+      <Toast
+        show={show}
+        style={{ position: "fixed", top: "20%", right: "10px" }}
+        className={`bg-${type} text-white`}
+        onClose={setShowToast.bind(this, {
+          show: false,
+          message: "",
+          type: null,
+        })}
+        delay={4000}
+        autohide
+      >
+        <Toast.Body>
+          <strong>{message}</strong>
+        </Toast.Body>
+      </Toast>
+    </>
+  );
 };
 
 export default Dashboard;
